@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     LayerMask platformLayerMask;
 
+    private SpriteRenderer spriteRenderer;
+    private Animator animator;
     private Collider2D collider;
     private Rigidbody2D rb;
     private float movement;
@@ -20,17 +22,26 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         movement = Input.GetAxis("Horizontal") * speed;
+
         if (!jumped && IsGrounded())
         {
             jumped = Input.GetButtonDown("Jump");
         }
 
+        animator.SetFloat("speed", Mathf.Abs(rb.velocity.x));
+        if (Mathf.Abs(rb.velocity.x) > 0) 
+        {
+            spriteRenderer.flipX = rb.velocity.x < 0;
+        }
+        animator.SetFloat("jumpSpeed", Mathf.Abs(rb.velocity.y));
     }
 
 
@@ -46,6 +57,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(movement, rb.velocity.y);
         }
+
     }
 
     bool IsGrounded()
@@ -66,7 +78,7 @@ public class PlayerController : MonoBehaviour
         {
             collision.GetComponent<CoinController>().Collect();
         }
-        else if (collision.CompareTag("Hazard")) 
+        else if (collision.CompareTag("Hazard"))
         {
             GameManager.instance.LoseLevel();
         }
