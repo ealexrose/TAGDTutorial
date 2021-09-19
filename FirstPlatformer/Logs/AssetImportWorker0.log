@@ -664,3 +664,11 @@ Received Import Request.
 Start importing Assets/Prefabs/Platform.prefab using Guid(b7dae2b5bdf9da342ab749860140e7d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8aaf6e97f665794fe28baa7357d66d0c') in 0.045717 seconds 
   Import took 0.049154 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 102.560514 seconds.
+  path: Assets/Fonts/OfficialBook SDF.asset
+  artifactKey: Guid(e875f84bc8fdcec4685a1f71eadd63f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fonts/OfficialBook SDF.asset using Guid(e875f84bc8fdcec4685a1f71eadd63f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee27d150c4d048159280a03e0b05815c') in 0.070122 seconds 
+  Import took 0.072998 seconds .
+

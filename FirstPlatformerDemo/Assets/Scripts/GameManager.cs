@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     private float worldTimeScale = 1f;
     private float slowTimeScale = 0.3f;
-    // Start is called before the first frame update
+    // Start is called before the first frame update, we will use the singleton programming pattern here
     void Awake()
     {
         if (GameManager.instance == null)
@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     }
 
+
+    //Update runs once per frame, we will check for Global effects here
     private void Update()
     {
         if (Input.GetButton("Slow"))
@@ -49,6 +51,8 @@ public class GameManager : MonoBehaviour
     }
 
     #region coins
+
+    //Code we want to run whehn you collect a coin
     public void CollectCoin()
     {
         collectedCoins++;
@@ -60,6 +64,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Used by coins to increase the amount of coins required to complete the level
     public void IncreaseRequiredCoins()
     {
         coinsToCompleteLevel++;
@@ -68,13 +73,14 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region level Info
+    //When our player reaches a death state, call this. We'll be restarting the level here
     public void LoseLevel()
     {
         coinsToCompleteLevel = 0;
         collectedCoins = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
+    //Change the score to reflect the current collected coins
     private void SetScoreDisplay()
     {
         if (scoreDisplay == null)
@@ -86,7 +92,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-
+    //Since our time scle variable is protected, we want to provide a way to get access to it that we can control
     public float GetTimeScale() 
     {
         return worldTimeScale;

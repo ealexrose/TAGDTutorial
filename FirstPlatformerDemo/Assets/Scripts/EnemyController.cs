@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
     private Vector2 startPosition;
     private float moveProgress = 0;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update, we store our start position here
     void Start()
     {
         startPosition = transform.position;
@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
         Move();
     }
 
-
+    //Calculate the next position of our enemy, then move them there
     private void Move()
     {
         if (forwards)
